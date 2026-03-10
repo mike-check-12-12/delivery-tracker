@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: delivery-tracker
+  labels:
+    app: delivery-tracker
+    domain: supply-chain
+    team: inventory-team
+    tier: "Tier 2 - Standard"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: delivery-tracker
+  template:
+    metadata:
+      labels:
+        app: delivery-tracker
+    spec:
+      containers:
+        - name: delivery-tracker
+          image: walmart-registry/delivery-tracker:latest
+          ports:
+            - containerPort: 8080
